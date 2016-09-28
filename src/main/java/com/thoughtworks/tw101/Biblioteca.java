@@ -12,15 +12,19 @@ public class Biblioteca {
 
     private PrintStream printStream;
     private List<Book> books;
+    private Menu menu;
 
-    public Biblioteca(PrintStream printStream, List<Book> books) {
+    public Biblioteca(PrintStream printStream, List<Book> books, Menu menu) {
         this.printStream = printStream;
         this.books = books;
+        this.menu = menu;
     }
 
     public void start() {
 
         printStream.println("Welcome!");
+
+        menu.display();
 
         for (Book book : books) {
             book.display();

@@ -13,7 +13,8 @@ public class Main {
         PrintStream printStream = new PrintStream(System.out);
         List<Book> books = new ArrayList<>();
 
-        Biblioteca biblioteca = new Biblioteca(printStream, books);
+        Menu menu = new Menu();
+        Biblioteca biblioteca = new Biblioteca(printStream, books, menu);
         biblioteca.start();
     }
 }

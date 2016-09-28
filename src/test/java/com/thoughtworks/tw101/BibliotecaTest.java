@@ -20,12 +20,14 @@ public class BibliotecaTest {
     private PrintStream printStream;
     private Biblioteca biblioteca;
     private List<Book> books;
+    private Menu menu;
 
     @Before
     public void setUp() throws Exception {
+        menu = mock(Menu.class);
         printStream = mock(PrintStream.class);
         books = new ArrayList<>();
-        biblioteca = new Biblioteca(printStream, books);
+        biblioteca = new Biblioteca(printStream, books, menu);
 
     }
 
@@ -54,4 +56,9 @@ public class BibliotecaTest {
         verify(book2).display();
     }
 
+    @Test
+    public void shouldDisplayMenuWhenStarting() throws Exception {
+        biblioteca.start();
+        verify(menu).display();
+    }
 }
