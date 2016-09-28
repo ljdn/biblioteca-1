@@ -54,8 +54,4 @@ public class BibliotecaTest {
         verify(book2).display();
     }
 
-    @Test
-    public void shouldDisplayTitleAuthorAndNameForEachBook() throws Exception {
-
-    }
 }
