@@ -17,31 +17,20 @@ import static org.mockito.Mockito.when;
  */
 public class BibliotecaTest {
 
-    private PrintStream printStream;
     private Biblioteca biblioteca;
     private List<Book> books;
-    private Menu menu;
 
     @Before
     public void setUp() throws Exception {
-        menu = mock(Menu.class);
-        printStream = mock(PrintStream.class);
         books = new ArrayList<>();
-        biblioteca = new Biblioteca(printStream, books, menu);
-
-    }
-
-    @Test
-    public void shouldDisplayWelcomeMessageWhenApplicationStarts() throws Exception {
-        biblioteca.start();
-        verify(printStream).println("Welcome!");
+        biblioteca = new Biblioteca(books);
     }
 
     @Test
     public void shouldDisplayOneBookWhenStartingWithOneBook() throws Exception {
         Book book = mock(Book.class);
         books.add(book);
-        biblioteca.start();
+        biblioteca.listBooks();
         verify(book).display();
     }
 
@@ -51,15 +40,10 @@ public class BibliotecaTest {
         Book book2 = mock(Book.class);
         books.add(book1);
         books.add(book2);
-        biblioteca.start();
+        biblioteca.listBooks();
         verify(book1).display();
         verify(book2).display();
     }
 
-    @Test
-    public void shouldDisplayMenuWhenStarting() throws Exception {
-        biblioteca.start();
-        verify(menu).display();
-    }
 
 }

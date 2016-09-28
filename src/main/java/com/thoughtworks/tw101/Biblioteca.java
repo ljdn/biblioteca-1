@@ -8,24 +8,13 @@ import java.util.List;
  * Created by tafarii on 9/27/16.
  */
 public class Biblioteca {
-
-
-    private PrintStream printStream;
     private List<Book> books;
-    private Menu menu;
 
-    public Biblioteca(PrintStream printStream, List<Book> books, Menu menu) {
-        this.printStream = printStream;
+    public Biblioteca(List<Book> books) {
         this.books = books;
-        this.menu = menu;
     }
 
-    public void start() {
-
-        printStream.println("Welcome!");
-
-        menu.display();
-
+    public void listBooks() {
         for (Book book : books) {
             book.display();
         }
