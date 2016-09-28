@@ -11,9 +11,9 @@ public class Biblioteca {
 
 
     private PrintStream printStream;
-    private List<String> books;
+    private List<Book> books;
 
-    public Biblioteca(PrintStream printStream, List<String> books) {
+    public Biblioteca(PrintStream printStream, List<Book> books) {
         this.printStream = printStream;
         this.books = books;
     }
@@ -23,7 +23,7 @@ public class Biblioteca {
         printStream.println("Welcome!");
 
         for (int i = 0; i < books.size(); i++) {
-            printStream.println(books.get(i));
+            books.get(i).display();
         }
     }
 }

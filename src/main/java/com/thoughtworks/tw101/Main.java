@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         PrintStream printStream = new PrintStream(System.out);
-        List<String> books = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         Biblioteca biblioteca = new Biblioteca(printStream, books);
         biblioteca.start();
     }

@@ -18,7 +18,7 @@ public class BibliotecaTest {
 
     private PrintStream printStream;
     private Biblioteca biblioteca;
-    private List<String> books;
+    private List<Book> books;
 
     @Before
     public void setUp() throws Exception {
@@ -36,16 +36,18 @@ public class BibliotecaTest {
 
     @Test
     public void shouldDisplayOneBookAfterWelcomeMessage() throws Exception {
-        books.add("Book Title");
+        books.add(new Book(printStream, "Book 1", "Lejia", "2016"));
         biblioteca.start();
-        verify(printStream).println("Book Title");
+        verify(printStream).println("Book 1 | Lejia | 2016");
     }
 
     @Test
     public void shouldDisplayTwoBooksAfterWelcomeMessage() throws Exception {
-        books.add("Book Title");
-        books.add("Book 2");
+        books.add(new Book(printStream, "Book 1", "Lejia", "2016"));
+        books.add(new Book(printStream, "Book 2", "Tafarii", "2016"));
+
         biblioteca.start();
-        verify(printStream).println("Book 2");
+        verify(printStream).println("Book 2 | Tafarii | 2016");
     }
+
 }
