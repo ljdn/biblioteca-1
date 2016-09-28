@@ -22,8 +22,8 @@ public class Biblioteca {
 
         printStream.println("Welcome!");
 
-        for (int i = 0; i < books.size(); i++) {
-            books.get(i).display();
+        for (Book book : books) {
+            book.display();
         }
     }
 }

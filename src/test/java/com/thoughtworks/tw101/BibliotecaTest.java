@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by tafarii on 9/27/16.
@@ -35,19 +36,26 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void shouldDisplayOneBookAfterWelcomeMessage() throws Exception {
-        books.add(new Book(printStream, "Book 1", "Lejia", "2016"));
+    public void shouldDisplayOneBookWhenStartingWithOneBook() throws Exception {
+        Book book = mock(Book.class);
+        books.add(book);
         biblioteca.start();
-        verify(printStream).println("Book 1 | Lejia | 2016");
+        verify(book).display();
     }
 
     @Test
-    public void shouldDisplayTwoBooksAfterWelcomeMessage() throws Exception {
-        books.add(new Book(printStream, "Book 1", "Lejia", "2016"));
-        books.add(new Book(printStream, "Book 2", "Tafarii", "2016"));
-
+    public void shouldDisplayTwoBooksWhenStartingWithTwoBooks() throws Exception {
+        Book book1 = mock(Book.class);
+        Book book2 = mock(Book.class);
+        books.add(book1);
+        books.add(book2);
         biblioteca.start();
-        verify(printStream).println("Book 2 | Tafarii | 2016");
+        verify(book1).display();
+        verify(book2).display();
     }
 
+    @Test
+    public void shouldDisplayTitleAuthorAndNameForEachBook() throws Exception {
+
+    }
 }
