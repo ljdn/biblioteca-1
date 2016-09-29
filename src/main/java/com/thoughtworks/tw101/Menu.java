@@ -26,6 +26,9 @@ public class Menu {
             if(bufferedReader.readLine().equals("1")){
                 biblioteca.listBooks();
             }
+            else{
+                printStream.println("Select a valid option!");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

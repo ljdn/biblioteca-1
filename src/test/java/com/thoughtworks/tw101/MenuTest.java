@@ -48,4 +48,12 @@ public class MenuTest {
         menu.display();
         verify(biblioteca).listBooks();
     }
+
+    @Test
+    public void shouldDisplayErrorMessageWhenSelectingInvalidOption() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("x");
+        menu.display();
+        verify(printStream).println("Select a valid option!");
+
+    }
 }
