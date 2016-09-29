@@ -1,5 +1,6 @@
 package com.thoughtworks.tw101;
 
+import com.javafx.tools.doclets.internal.toolkit.util.DocFinder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,42 +19,49 @@ public class MenuTest {
     PrintStream printStream;
     Menu menu;
     private Biblioteca biblioteca;
-    private BufferedReader bufferedReader;
+    private InputReader inputReader;
 
     @Before
     public void setUp() throws Exception {
-        bufferedReader = mock(BufferedReader.class);
+        inputReader = mock(InputReader.class);
         printStream = mock(PrintStream.class);
         biblioteca = mock(Biblioteca.class);
-        menu = new Menu(printStream, biblioteca, bufferedReader);
+        menu = new Menu(printStream, biblioteca, inputReader);
     }
 
     @Test
     public void shouldDisplayOptionListBooksWhenMenuIsDisplayed() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1");
+        when(inputReader.getString()).thenReturn("1", "q");
         menu.display();
         verify(printStream).println("1: List Books");
     }
 
     @Test
     public void shouldPrintPromptWhenMenuIsDisplayed() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1");
+        when(inputReader.getString()).thenReturn("1", "q");
         menu.display();
         verify(printStream).println("Please select an option");
     }
 
     @Test
     public void shouldListBooksWhenUserInputsOne() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1");
+        when(inputReader.getString()).thenReturn("1", "q");
         menu.display();
         verify(biblioteca).listBooks();
     }
 
     @Test
     public void shouldDisplayErrorMessageWhenSelectingInvalidOption() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("x");
+        when(inputReader.getString()).thenReturn("x", "q");
         menu.display();
         verify(printStream).println("Select a valid option!");
+    }
+
+    @Test
+    public void shouldBeAbleToContinueChoosingOptionsWhenFirstOptionIsInvalid() throws Exception {
+        when(inputReader.getString()).thenReturn("x", "1", "q");
+        menu.display();
+        verify(biblioteca).listBooks();
 
     }
 }

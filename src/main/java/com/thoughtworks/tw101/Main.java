@@ -17,7 +17,8 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca(books);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Menu menu = new Menu(printStream, biblioteca, bufferedReader);
+        InputReader inputReader = new InputReader(bufferedReader);
+        Menu menu = new Menu(printStream, biblioteca, inputReader);
         Application application = new Application(printStream, menu);
 
         books.add(new Book(printStream, "Book 1", "Lejia", "2016"));
