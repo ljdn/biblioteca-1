@@ -47,6 +47,7 @@ public class MenuTest {
     public void shouldListBooksWhenUserInputsOne() throws Exception {
         when(inputReader.getString()).thenReturn("1", "q");
         menu.display();
+        menu.performOption();
         verify(biblioteca).listBooks();
     }
 
@@ -54,6 +55,7 @@ public class MenuTest {
     public void shouldDisplayErrorMessageWhenSelectingInvalidOption() throws Exception {
         when(inputReader.getString()).thenReturn("x", "q");
         menu.display();
+        menu.performOption();
         verify(printStream).println("Select a valid option!");
     }
 
@@ -61,6 +63,7 @@ public class MenuTest {
     public void shouldBeAbleToContinueChoosingOptionsWhenFirstOptionIsInvalid() throws Exception {
         when(inputReader.getString()).thenReturn("x", "1", "q");
         menu.display();
+        menu.performOption();
         verify(biblioteca).listBooks();
 
     }
@@ -69,8 +72,34 @@ public class MenuTest {
     public void shouldDisplayCheckoutOptionWhenMenuIsDisplayed() throws Exception {
         when(inputReader.getString()).thenReturn("q");
         menu.display();
+        menu.performOption();
         verify(printStream).println("2: Checkout Books");
+
+    }
+
+    @Test
+    public void shouldDisplayListOfBooksWhenCheckoutOptionIsSelected() throws Exception {
+        when(inputReader.getString()).thenReturn("2", "1", "q");
+        menu.display();
+        menu.performOption();
+        verify(biblioteca).listBooks();
+    }
+
+    @Test
+    public void shouldPromptUserForBookToCheckout() throws Exception {
+        when(inputReader.getString()).thenReturn("2","1", "q");
+        menu.display();
+        menu.performOption();
+        verify(printStream).println("Select a book to checkout");
     }
 
 
+    @Test
+    public void shouldRemoveSelectedBookFromBookListWhenBookIsCheckedOut() throws Exception {
+        when(inputReader.getString()).thenReturn("2", "1","q");
+        menu.display();
+        menu.performOption();
+        verify(biblioteca).removeBook(1);
+
+    }
 }

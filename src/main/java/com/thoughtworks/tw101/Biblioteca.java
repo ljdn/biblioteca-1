@@ -1,7 +1,5 @@
 package com.thoughtworks.tw101;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,5 +16,9 @@ public class Biblioteca {
         for (Book book : books) {
             book.display();
         }
+    }
+
+    public void removeBook(int book) {
+        books.remove(book-1);
     }
 }

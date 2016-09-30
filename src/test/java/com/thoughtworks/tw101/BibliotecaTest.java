@@ -45,5 +45,14 @@ public class BibliotecaTest {
         verify(book2).display();
     }
 
+    @Test
+    public void shouldUpdateBookListWhenRemovingBook() throws Exception {
+        Book book1 = mock(Book.class);
+        Book book2 = mock(Book.class);
+        books.add(book1);
+        books.add(book2);
+        biblioteca.removeBook(1);
+        assertEquals(books.size(), 1);
 
+    }
 }

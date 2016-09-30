@@ -1,8 +1,8 @@
 package com.thoughtworks.tw101;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by tafarii on 9/28/16.
@@ -38,18 +38,24 @@ public class Menu {
     private String processInput(String input){
         display();
 
-        if(input.equals("1")){
-            biblioteca.listBooks();
-            return inputReader.getString();
+        Map<String, Option> options = new HashMap<>();
+        options.put("1", new ListBooksOption(biblioteca));
+        options.put("2", new CheckoutBooksOption(biblioteca, printStream, inputReader));
+        // options.put("q", new QuitOption());
+        if (options.containsKey(input)) {
+            options.get(input).run();
         }
-        else if(input.equals("q")){
+
+
+        else if(input.equals("q")) {
             printStream.println("Exiting application");
             return "q";
         }
         else {
             printStream.println("Select a valid option!");
-            return inputReader.getString();
         }
+        return inputReader.getString();
+
     }
 
 }
