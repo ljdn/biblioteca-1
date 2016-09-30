@@ -64,4 +64,13 @@ public class MenuTest {
         verify(biblioteca).listBooks();
 
     }
+
+    @Test
+    public void shouldDisplayCheckoutOptionWhenMenuIsDisplayed() throws Exception {
+        when(inputReader.getString()).thenReturn("q");
+        menu.display();
+        verify(printStream).println("2: Checkout Books");
+    }
+
+
 }

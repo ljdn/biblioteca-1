@@ -19,24 +19,31 @@ public class Menu {
     }
 
     public void display() {
-        printStream.println("1: List Books");
         printStream.println("Please select an option");
-        String choice = inputReader.getString();
+        printStream.println("1: List Books");
+        printStream.println("2: Checkout Books");
+        printStream.println("q: Quit");
+    }
 
+    public void performOption() {
+        String choice = inputReader.getString();
 
         while (choice != "q") {
             //choice = getString(choice);
             choice = processInput(choice);
         }
-
     }
 
+
     private String processInput(String input){
+        display();
+
         if(input.equals("1")){
             biblioteca.listBooks();
             return inputReader.getString();
         }
         else if(input.equals("q")){
+            printStream.println("Exiting application");
             return "q";
         }
         else {
